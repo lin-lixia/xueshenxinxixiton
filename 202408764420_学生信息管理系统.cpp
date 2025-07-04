@@ -33,7 +33,7 @@ int count = 0;
 struct User users[MAX_USERS];
 int usercount = 0;
 
-// º¯ÊıÉùÃ÷
+// å‡½æ•°å£°æ˜
 void saveToFile();
 void loadFromFile();
 void saveUsersToFile();
@@ -53,108 +53,108 @@ void clearBuffer();
 
 void welcomeScreen() {
     printf("\n================================\n");
-    printf("    Ñ§ÉúĞÅÏ¢¹ÜÀíÏµÍ³\n");
+    printf("    å­¦ç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿ\n");
     printf("================================\n");
-    printf("1. ×¢²á\n");
-    printf("2. µÇÂ¼\n");
-    printf("0. ÍË³ö\n");
+    printf("1. æ³¨å†Œ\n");
+    printf("2. ç™»å½•\n");
+    printf("0. é€€å‡º\n");
     printf("================================\n");
-    printf("ÇëÑ¡Ôñ²Ù×÷: ");
+    printf("è¯·é€‰æ‹©æ“ä½œ: ");
 }
 
 void registerUser() {
     if (usercount >= MAX_USERS) {
-        printf("ÓÃ»§ÊıÁ¿ÒÑ´ïÉÏÏŞ!\n");
+        printf("ç”¨æˆ·æ•°é‡å·²è¾¾ä¸Šé™!\n");
         return;
     }
     
-    printf("\n--- ÓÃ»§×¢²á ---\n");
-    printf("ÇëÊäÈëÓÃ»§Ãû: ");
+    printf("\n--- ç”¨æˆ·æ³¨å†Œ ---\n");
+    printf("è¯·è¾“å…¥ç”¨æˆ·å: ");
     scanf("%s", users[usercount].username);
     
     for (int i = 0; i < usercount; i++) {
         if (strcmp(users[i].username, users[usercount].username) == 0) {
-            printf("ÓÃ»§ÃûÒÑ´æÔÚ!\n");
+            printf("ç”¨æˆ·åå·²å­˜åœ¨!\n");
             return;
         }
     }
 
-printf("ÇëÊäÈëÃÜÂë: ");
+printf("è¯·è¾“å…¥å¯†ç : ");
     scanf("%s", users[usercount].password);
     
     usercount++;
     saveUsersToFile();
-    printf("×¢²á³É¹¦! ÇëµÇÂ¼ÏµÍ³¡£\n");
+    printf("æ³¨å†ŒæˆåŠŸ! è¯·ç™»å½•ç³»ç»Ÿã€‚\n");
 }
 
 bool loginUser() {
     char username[20];
     char password[20];
     
-    printf("\n--- ÓÃ»§µÇÂ¼ ---\n");
-    printf("ÇëÊäÈëÓÃ»§Ãû: ");
+    printf("\n--- ç”¨æˆ·ç™»å½• ---\n");
+    printf("è¯·è¾“å…¥ç”¨æˆ·å: ");
     scanf("%s", username);
     
-    printf("ÇëÊäÈëÃÜÂë: ");
+    printf("è¯·è¾“å…¥å¯†ç : ");
     scanf("%s", password);
     
     for (int i = 0; i < usercount; i++) {
         if (strcmp(users[i].username, username) == 0 && 
             strcmp(users[i].password, password) == 0) {
-            printf("\nµÇÂ¼³É¹¦! »¶Ó­ %s!\n", username);
+            printf("\nç™»å½•æˆåŠŸ! æ¬¢è¿ %s!\n", username);
             return true;
         }
     }
     
-    printf("ÓÃ»§Ãû»òÃÜÂë´íÎó!\n");
+    printf("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯!\n");
     return false;
 }
 
 
 void showmenu(){
-	printf("\n====Ñ§ÉúĞÅÏ¢¹ÜÀíÏµÍ³====\n");
-	printf("1.Ìí¼ÓÑ§Éú\n");
-	printf("2.É¾³ıÑ§Éú\n");
-	printf("3.ĞŞ¸ÄÑ§Éú\n");
-	printf("4.²éÕÒÑ§Éú\n");
-	printf("5.ÏÔÊ¾ËùÓĞÑ§Éú\n");
-	printf("6.Í³¼ÆĞÅÏ¢\n");
-	printf("7. ±£´æÊı¾İ\n");
-	printf("0.ÍË³öÏµÍ³\n");
+	printf("\n====å­¦ç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿ====\n");
+	printf("1.æ·»åŠ å­¦ç”Ÿ\n");
+	printf("2.åˆ é™¤å­¦ç”Ÿ\n");
+	printf("3.ä¿®æ”¹å­¦ç”Ÿ\n");
+	printf("4.æŸ¥æ‰¾å­¦ç”Ÿ\n");
+	printf("5.æ˜¾ç¤ºæ‰€æœ‰å­¦ç”Ÿ\n");
+	printf("6.ç»Ÿè®¡ä¿¡æ¯\n");
+	printf("7. ä¿å­˜æ•°æ®\n");
+	printf("0.é€€å‡ºç³»ç»Ÿ\n");
     printf("==========================\n");
-	printf("ÇëÑ¡Ôñ²Ù×÷:"); 
+	printf("è¯·é€‰æ‹©æ“ä½œ:"); 
 }
 
 void addstudent(){
 	if(count>=MAX_STUDENTS){
-		printf("Ñ§ÉúÊıÁ¿´ïµ½ÉÏÏŞ£¡\n");
+		printf("å­¦ç”Ÿæ•°é‡è¾¾åˆ°ä¸Šé™ï¼\n");
 		return;
 	} 
 
-    printf("ÊäÈëÑ§ºÅ£º");
+    printf("è¾“å…¥å­¦å·ï¼š");
 	scanf("%d", &students[count].id);
-	printf("ÊäÈëĞÕÃû:");
+	printf("è¾“å…¥å§“å:");
 	scanf("%s", students[count].name); 
-	printf("ÊäÈëÓ¢Óï³É¼¨£º");
+	printf("è¾“å…¥è‹±è¯­æˆç»©ï¼š");
 	scanf("%f", &students[count].score.english);
-	printf("ÊäÈëÊıÑ§³É¼¨£º"); 
+	printf("è¾“å…¥æ•°å­¦æˆç»©ï¼š"); 
 	scanf("%f",&students[count].score.math);
-	printf("ÊäÈë¼ÆËã»ú³É¼¨£º");
+	printf("è¾“å…¥è®¡ç®—æœºæˆç»©ï¼š");
 	scanf("%f",&students[count].score.computer);
 	
     count++;
-    printf("Ìí¼Ó³É¹¦£¡");
+    printf("æ·»åŠ æˆåŠŸï¼");
 }
 
  
 void showallstudent(){
 	if(count==0){
-		printf("Ã»ÓĞÑ§Éú¼ÇÂ¼£¡\n");
+		printf("æ²¡æœ‰å­¦ç”Ÿè®°å½•ï¼\n");
 		return;
 	}
 	
-	printf("\n----ËùÓĞÑ§ÉúĞÅÏ¢----\n");
-	printf("Ñ§ºÅ\tĞÕÃû\tÓ¢Óï\tÊıÑ§\t¼ÆËã»ú\n"); 
+	printf("\n----æ‰€æœ‰å­¦ç”Ÿä¿¡æ¯----\n");
+	printf("å­¦å·\tå§“å\tè‹±è¯­\tæ•°å­¦\tè®¡ç®—æœº\n"); 
 	printf("------------------------------\n");
 	for(int i=0; i<count; i++){
 		printf("%d\t%s\t%.2f\t%.2f\t%.2f\n", 
@@ -168,19 +168,19 @@ void showallstudent(){
 
 void findstudent(){
 	int id;
-    printf("\n----²éÕÒÑ§Éú----\n");
-    printf("ÇëÊäÈëÒª²éÕÒÑ§ÉúµÄÑ§ºÅ:");
+    printf("\n----æŸ¥æ‰¾å­¦ç”Ÿ----\n");
+    printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾å­¦ç”Ÿçš„å­¦å·:");
     scanf("%d", &id);
     
     int found = 0;
 	for(int i=0; i<count; i++){ 
 		if(students[i].id == id){
-			printf("\nÕÒµ½Ñ§ÉúĞÅÏ¢£º\n");
-			printf("Ñ§ºÅ£º%d\n", students[i].id);
-			printf("ĞÕÃû£º%s\n", students[i].name);
-			printf("Ó¢Óï³É¼¨£º%.2f\n", students[i].score.english);
-			printf("ÊıÑ§³É¼¨£º%.2f\n", students[i].score.math);
-			printf("¼ÆËã»ú³É¼¨£º%.2f\n", students[i].score.computer);
+			printf("\næ‰¾åˆ°å­¦ç”Ÿä¿¡æ¯ï¼š\n");
+			printf("å­¦å·ï¼š%d\n", students[i].id);
+			printf("å§“åï¼š%s\n", students[i].name);
+			printf("è‹±è¯­æˆç»©ï¼š%.2f\n", students[i].score.english);
+			printf("æ•°å­¦æˆç»©ï¼š%.2f\n", students[i].score.math);
+			printf("è®¡ç®—æœºæˆç»©ï¼š%.2f\n", students[i].score.computer);
 			found = 1;
 			
 			float total=students[i].score.english+students[i].score.math+students[i].score.computer;
@@ -191,14 +191,14 @@ void findstudent(){
 	}
 	
 	if(!found){
-		printf("Ã»ÓĞÑ§ºÅÎª%dµÄÑ§ÉúĞÅÏ¢£¡\n", id);	
+		printf("æ²¡æœ‰å­¦å·ä¸º%dçš„å­¦ç”Ÿä¿¡æ¯ï¼\n", id);	
 	}
 }
         
 void deletestudent(){
 	int id; 
-    printf("\n----É¾³ıÑ§Éú----\n");
-    printf("ÇëÊäÈëÒªÉ¾³ıÑ§ºÅµÄÑ§Éú£º");
+    printf("\n----åˆ é™¤å­¦ç”Ÿ----\n");
+    printf("è¯·è¾“å…¥è¦åˆ é™¤å­¦å·çš„å­¦ç”Ÿï¼š");
 	scanf("%d", &id); 
 		
 	int found=0;
@@ -209,48 +209,48 @@ void deletestudent(){
 			}
 			count--;
 			found=1;
-			printf("É¾³ı³É¹¦£¡\n");
+			printf("åˆ é™¤æˆåŠŸï¼\n");
 			break;
 		}
 	}
 	if(!found){
-		printf("Î´ÕÒµ½¸ÃÑ§ºÅÎª%dµÄÑ§Éú\n", id);
+		printf("æœªæ‰¾åˆ°è¯¥å­¦å·ä¸º%dçš„å­¦ç”Ÿ\n", id);
 	}
 }        
 
 void modifystudent(){
 	int id;
-	printf("\n----ĞŞ¸ÄÑ§ÉúĞÅÏ¢----\n");
-	printf("ÇëÊäÈëÒªĞŞ¸ÄµÄÑ§ºÅ£º");
+	printf("\n----ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯----\n");
+	printf("è¯·è¾“å…¥è¦ä¿®æ”¹çš„å­¦å·ï¼š");
 	scanf("%d", &id);
 	for(int i=0; i<count; i++){
 		if(students[i].id == id){
-			printf("ÕÒµ½Ñ§ÉúĞÅÏ¢:\n");
-			printf("Ñ§ºÅ£º%d\n", students[i].id);
-			printf("ĞÕÃû£º%s\n", students[i].name);
-			printf("Ó¢Óï³É¼¨£º%.2f\n", students[i].score.english);
-			printf("ÊıÑ§³É¼¨£º%.2f\n", students[i].score.math);
-			printf("¼ÆËã»ú³É¼¨£º%.2f\n", students[i].score.computer);
+			printf("æ‰¾åˆ°å­¦ç”Ÿä¿¡æ¯:\n");
+			printf("å­¦å·ï¼š%d\n", students[i].id);
+			printf("å§“åï¼š%s\n", students[i].name);
+			printf("è‹±è¯­æˆç»©ï¼š%.2f\n", students[i].score.english);
+			printf("æ•°å­¦æˆç»©ï¼š%.2f\n", students[i].score.math);
+			printf("è®¡ç®—æœºæˆç»©ï¼š%.2f\n", students[i].score.computer);
 			
-			printf("\nÇëÊäÈëĞÂĞÕÃû£º");
+			printf("\nè¯·è¾“å…¥æ–°å§“åï¼š");
 			scanf("%s", students[i].name); 
-			printf("ÇëÊäÈëĞÂÓ¢Óï³É¼¨£º");
+			printf("è¯·è¾“å…¥æ–°è‹±è¯­æˆç»©ï¼š");
 			scanf("%.2f", &students[i].score.english);
-			printf("ÇëÊäÈëĞÂÊıÑ§³É¼¨£º");
+			printf("è¯·è¾“å…¥æ–°æ•°å­¦æˆç»©ï¼š");
 			scanf("%.2f", &students[i].score.math);
-			printf("ÇëÊäÈëĞÂ¼ÆËã»ú³É¼¨£º");
+			printf("è¯·è¾“å…¥æ–°è®¡ç®—æœºæˆç»©ï¼š");
 			scanf("%.2f", &students[i].score.computer);
 			
-			printf("ĞŞ¸Ä³É¹¦£¡\n");
+			printf("ä¿®æ”¹æˆåŠŸï¼\n");
 			return; 
 		}
 	}
-	printf("Î´ÕÒµ½¸ÃÑ§ºÅÎª%dµÄÑ§Éú\n", id);
+	printf("æœªæ‰¾åˆ°è¯¥å­¦å·ä¸º%dçš„å­¦ç”Ÿ\n", id);
 }
 
 void statistics(){
-	printf("\n----Í³¼ÆĞÅÏ¢----\n");
-	printf("Ñ§Éú×ÜÊı£º%d\n", count);
+	printf("\n----ç»Ÿè®¡ä¿¡æ¯----\n");
+	printf("å­¦ç”Ÿæ€»æ•°ï¼š%d\n", count);
 	
 	if(count == 0) return;
 		
@@ -286,24 +286,24 @@ void statistics(){
 			computermin = students[i].score.computer;
 	}
 		
-	printf("Ó¢ÓïÆ½¾ù³É¼¨£º%.2f\n",englishsum/count);
-	printf("Ó¢Óï×î¸ß·Ö£º%.2f\n",englishmax); 
-	printf("Ó¢Óï×îµÍ·Ö£º%.2f\n",englishmin);
+	printf("è‹±è¯­å¹³å‡æˆç»©ï¼š%.2f\n",englishsum/count);
+	printf("è‹±è¯­æœ€é«˜åˆ†ï¼š%.2f\n",englishmax); 
+	printf("è‹±è¯­æœ€ä½åˆ†ï¼š%.2f\n",englishmin);
 	
-	printf("ÊıÑ§Æ½¾ù³É¼¨£º%.2f\n",mathsum/count);
-	printf("ÊıÑ§×î¸ß·Ö£º%.2f\n",mathmax); 
-	printf("ÊıÑ§×îµÍ·Ö£º%.2f\n",mathmin);
+	printf("æ•°å­¦å¹³å‡æˆç»©ï¼š%.2f\n",mathsum/count);
+	printf("æ•°å­¦æœ€é«˜åˆ†ï¼š%.2f\n",mathmax); 
+	printf("æ•°å­¦æœ€ä½åˆ†ï¼š%.2f\n",mathmin);
 	
-	printf("¼ÆËã»úÆ½¾ù³É¼¨£º%.2f\n",computersum/count);
-	printf("¼ÆËã»ú×î¸ß·Ö£º%.2f\n",computermax); 
-	printf("¼ÆËã»ú×îµÍ·Ö£º%.2f\n",computermin);	
+	printf("è®¡ç®—æœºå¹³å‡æˆç»©ï¼š%.2f\n",computersum/count);
+	printf("è®¡ç®—æœºæœ€é«˜åˆ†ï¼š%.2f\n",computermax); 
+	printf("è®¡ç®—æœºæœ€ä½åˆ†ï¼š%.2f\n",computermin);	
 }       
 
-// ±£´æÊı¾İµ½ÎÄ¼ş
+// ä¿å­˜æ•°æ®åˆ°æ–‡ä»¶
 void saveToFile() {
     FILE *file = fopen(FILENAME, "wb"); 
     if (file == NULL) {
-        printf("ÎŞ·¨±£´æÊı¾İµ½ÎÄ¼ş!\n");
+        printf("æ— æ³•ä¿å­˜æ•°æ®åˆ°æ–‡ä»¶!\n");
         return;
     }
     
@@ -311,35 +311,35 @@ void saveToFile() {
     fwrite(students, sizeof(struct Student), count, file);
     
     fclose(file);
-    printf("Ñ§ÉúÊı¾İÒÑ±£´æµ½ %s\n", FILENAME);
+    printf("å­¦ç”Ÿæ•°æ®å·²ä¿å­˜åˆ° %s\n", FILENAME);
 }
 
-// ´ÓÎÄ¼ş¼ÓÔØÊı¾İ
+// ä»æ–‡ä»¶åŠ è½½æ•°æ®
 void loadFromFile() {
     FILE *file = fopen(FILENAME, "rb"); 
     if (file == NULL) {
-        printf("Î´ÕÒµ½Êı¾İÎÄ¼ş£¬½«´´½¨ĞÂÎÄ¼ş¡£\n");
+        printf("æœªæ‰¾åˆ°æ•°æ®æ–‡ä»¶ï¼Œå°†åˆ›å»ºæ–°æ–‡ä»¶ã€‚\n");
         return;
     }
     
     fread(&count, sizeof(int), 1, file);
     fread(students, sizeof(struct Student), count, file);
     fclose(file);
-    printf("ÒÑ´Ó %s ¼ÓÔØÑ§ÉúÊı¾İ\n", FILENAME);
+    printf("å·²ä» %s åŠ è½½å­¦ç”Ÿæ•°æ®\n", FILENAME);
 }
 
-// ±£´æÓÃ»§Êı¾İµ½ÎÄ¼ş
+// ä¿å­˜ç”¨æˆ·æ•°æ®åˆ°æ–‡ä»¶
 void saveUsersToFile() {
     FILE *file = fopen(USER_FILE, "wb");
     if (file == NULL) {
-        printf("ÎŞ·¨±£´æÓÃ»§Êı¾İ!\n");
+        printf("æ— æ³•ä¿å­˜ç”¨æˆ·æ•°æ®!\n");
         return;
     }
 
-    // ÏÈĞ´ÈëÓÃ»§ÊıÁ¿
+    // å…ˆå†™å…¥ç”¨æˆ·æ•°é‡
     fwrite(&usercount, sizeof(int), 1, file);
 
-    // Ğ´ÈëËùÓĞÓÃ»§Êı¾İ
+    // å†™å…¥æ‰€æœ‰ç”¨æˆ·æ•°æ®
     fwrite(users, sizeof(struct User), usercount, file);
 
     fclose(file);
@@ -348,7 +348,7 @@ void saveUsersToFile() {
 void loadUsersFromFile() {
     FILE *file = fopen(USER_FILE, "rb");
     if (file == NULL) {
-        printf("Î´ÕÒµ½ÓÃ»§Êı¾İÎÄ¼ş£¬½«´´½¨ĞÂÎÄ¼ş¡£\n");
+        printf("æœªæ‰¾åˆ°ç”¨æˆ·æ•°æ®æ–‡ä»¶ï¼Œå°†åˆ›å»ºæ–°æ–‡ä»¶ã€‚\n");
         return;
     }
     fread(&usercount, sizeof(int), 1, file);
@@ -394,10 +394,10 @@ void adminMenu() {
                 break;
             case 0:
                 saveToFile();  
-                printf("\n·µ»ØµÇÂ¼½çÃæ...\n");
+                printf("\nè¿”å›ç™»å½•ç•Œé¢...\n");
                 return;
             default:
-                printf("ÎŞĞ§Ñ¡Ôñ£¬ÇëÖØĞÂÊäÈë£¡\n");
+                printf("æ— æ•ˆé€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥ï¼\n");
         }
     }
 }
@@ -412,7 +412,7 @@ int main() {
         strcpy(users[0].password, "admin123");
         usercount = 1;
         saveUsersToFile();
-        printf("ÒÑ´´½¨Ä¬ÈÏ¹ÜÀíÔ±ÕË»§: ÓÃ»§Ãû=0000, ÃÜÂë=0000\n");
+        printf("å·²åˆ›å»ºé»˜è®¤ç®¡ç†å‘˜è´¦æˆ·: ç”¨æˆ·å=0000, å¯†ç =0000\n");
     }
 
     int choice;
@@ -431,10 +431,10 @@ int main() {
                 }
                 break;
             case 0:
-                printf("\n¸ĞĞ»Ê¹ÓÃÑ§Éú¹ÜÀíÏµÍ³£¬ÔÙ¼û!\n");
+                printf("\næ„Ÿè°¢ä½¿ç”¨å­¦ç”Ÿç®¡ç†ç³»ç»Ÿï¼Œå†è§!\n");
                 return 0;
             default:
-                printf("ÎŞĞ§µÄÑ¡Ôñ£¬ÇëÖØĞÂÊäÈë!\n");
+                printf("æ— æ•ˆçš„é€‰æ‹©ï¼Œè¯·é‡æ–°è¾“å…¥!\n");
         }
     }
 }   
